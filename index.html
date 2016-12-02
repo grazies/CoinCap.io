@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Coincap.io by grazies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Coincap.io</h1>
+      <h2 class="project-tagline">API tools and documentation</h2>
+      <a href="https://github.com/grazies/CoinCap.io" class="btn">View on GitHub</a>
+      <a href="https://github.com/grazies/CoinCap.io/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/grazies/CoinCap.io/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="coincapio" class="anchor" href="#coincapio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CoinCap.io</h1>
+
+<p>API tools and documentation</p>
+
+<h2>
+<a id="main-map" class="anchor" href="#main-map" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Main Map</h2>
+
+<ul>
+<li>/coins  Array of all supported coins</li>
+<li>/coins/xcp Array of all supported XCP assets</li>
+<li>/coins/xcp/all Array all XCP assets known</li>
+<li>/map  JSON object of Coin symbols/names and known aliases</li>
+<li>/front Front Page Data of current coin stats</li>
+<li>/front/xcp Front Page Data of just XCP assets</li>
+<li>/global Global data</li>
+<li>/page/:coin  must seach by symbol (e.g., BTC); returns all data on a specific coin</li>
+<li>/history/:coin Returns all history on a coin</li>
+<li>/history/1day/:coin returns 1 day of price history for a given coin</li>
+<li>/history/7day/:coin returns 7 days of price history for a given coin</li>
+<li>/history/30day/:coin returns 30 days day of price history for a given coin</li>
+<li>/history/90day/:coin returns 90 days of price history for a given coin</li>
+<li>/history/180day/:coin returns 180 days of price history for a given coin</li>
+<li>/history/365day/:coin returns a years of price history for a given coin</li>
+</ul>
+
+<h2>
+<a id="socket-api" class="anchor" href="#socket-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Socket API</h2>
+
+<pre><code>http://socket.coincap.io
+</code></pre>
+
+<p>To connect to CoinCap WebSockets you must use socket.io-client 0.9.16 or another
+WebSocket client compatiable with that version of Socket.io
+You can find the 0.9.16 client on github
+<a href="https://github.com/automattic/socket.io-client/tree/0.9">https://github.com/automattic/socket.io-client/tree/0.9</a></p>
+
+<p><a href="https://github.com/CoinCapDev/CoinCap/blob/master/subscribe.js">Sample code attached</a></p>
+
+<h3>
+<a id="responses" class="anchor" href="#responses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>responses</h3>
+
+<div class="highlight highlight-source-json"><pre>// Example Trade message
+{
+    <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>coin<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>BTC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>msg<span class="pl-pds">"</span></span>: {
+            <span class="pl-s"><span class="pl-pds">"</span>position24<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>position<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>short<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>BTC<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>long<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>Bitcoin<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>: <span class="pl-c1">1434566319464</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span>: <span class="pl-c1">251.55</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>perc<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1.89<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>volume<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>46021300<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>usdVolume<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>46021300<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>cap24hrChange<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1.89<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>mktcap<span class="pl-pds">"</span></span>: <span class="pl-c1">3593077312.5</span>,
+            <span class="pl-s"><span class="pl-pds">"</span>supply<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>14283750<span class="pl-pds">"</span></span>,
+            <span class="pl-s"><span class="pl-pds">"</span>published<span class="pl-pds">"</span></span>: <span class="pl-c1">false</span>
+        }
+    }
+}
+
+//Example Global Message
+{
+    <span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>btcPrice<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>251.445<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>btcCap<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>3591577518.75<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>altCap<span class="pl-pds">"</span></span>: <span class="pl-c1">657169699</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>dom<span class="pl-pds">"</span></span>: <span class="pl-c1">85</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>bitnodesCount<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>6216<span class="pl-pds">"</span></span>
+    }
+}</pre></div>
+
+<h2>
+<a id="coins-call" class="anchor" href="#coins-call" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Coins Call</h2>
+
+<pre><code>http://www.coincap.io/coins
+</code></pre>
+
+<h3>
+<a id="response" class="anchor" href="#response" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>response</h3>
+
+<div class="highlight highlight-source-json"><pre>["XCP","PRO","NXTI","NIRO","VCOIN","ADN","DTC","EMC","EGMA","DRZ","SIGU","IEC","007","CZR","SLING","TWIST","GUA","SOL","BAT","XPL","XCO","HEX","RT2","HIRO","KRN","CCC","BTX","SPHR","OSC","XMS","ROS","XTP","TEETH","SHELL","BCF","ANI","BUB","SLFI","486","BTC","LTC","NXT","PPC","DOGE","NMC","XRP","QRK","DGC","BTCD","LXC","XMR","SDC","XC","AUR","PTS","DVC","MINT","MGW","NAS","SFR","ZET","VIA","FTC","XPM","VRC","GML","IFC","VTC","XCR","QORA","MAX","ZCC","WDC","YBC","NXTTY","FRSH","XCN","BTB","PRT","TIX","RED","NET","EXC","CANN","BCN","MSC","MONA","STR","RDD","NVC","XDN","POT","SYS","CLOAK","IXC","SYNC","JLH","BILS","ANC","SDC","KARM","PND","NOTE","BBR","RZR","RZR","URO","UNO","NAUT","GLD","HYPER","NLG","XDP","DGB","JPC","NBT","NODE","UNITY","EXCL","XTC","MAID","BURST","DEM","SWIFT","MRKT","DASH","BTS","BANX","XPY","ARCH","NSR","FAIR","XEM","GEMZ","SWARM","BLK","DEX","CLAM","CELL","START","ETC","SJCX","NXTV","PANGEA","FC2","BLOCK","10K","GRC","SKYNET","JINN","I0C","USDT","XBS","NAV","LIQUID","TRON","BAY","MEC","CRAVE","JAY","BITUSD","CURE","ZRC","SLR","DOGED","ZEIT","VNL","ATOMIC","UCI","CNMT","PRIVATEBET","DMD","HZ","BITCNY","MMNXT","UFO","BITBTC","NOO","BTM","BSTY","FCN","MMXIV","WBB","DRKC","LDOGE","BLC","MUE","METAL","YAC","KORE","SMAC","HLC","CON","BQC","MWC","QTL","RBBT","DSH","DTC","ENRG","MNE","KOBO","EMD","KUMA","LEAF","SMBR","NTRN","KEY","CC","MTR","COV","ACOIN","CIN","PSEUD","LOT","FRK","SPA","TIT","LGD","XCASH","U","GLIDE","WKC","JUDGE","DBL","CXC","ASN","LSD","ASC","MRC2","CKC","LOG","XJO","BRIT","BTG","WETK","CRAIG","NKT","EVENT","HRNXT","BUN","GHC","BITZ","TRK","VDO","LYC","GP","BVC","GSM","TRI","ARG","VMC","VIOR","GIZ","GRE","P7C","CF","JKC","OPALTKN","SOON","BTQ","TAK","BOOM","UIS","EAGS","42","DSB","SHIBE","CRT","ICASH","URC","COINO","RBT","BALLS","NXTCOINSCO","SF0","FIMK","MTC","NXTPRIVACY","DICE","RBR","ISR","ECC","CINNI","CCS","AC","MRCAM","TRUST","WATER","FLT","PINK","CBX","XAP","NTR","RIN","NXTSCO","GMC","PLUGIN","MED","DARK","OC","PMP","XCH","NXTI","BTCS","SONG","CAIX","SXC","SSD","XLB","TES","XWT","BITGOLD","GAIA","COMM","MIN","TTC","BCX","TRL","XBC","BLZ","CZC","DORCS","HAM","XPD","CRW","CTM","TOR","VOOT","ICB","SCSY","QSLV","LKY","COOL","TOP","ELC","GLC","CLR","PIGGY","THC","HVC","BUK","PLNC","HUC","GDC","KTK","OK","XDQ","APEX","XXX","SILK","SLM","CHA","SMC","UTIL","MEOW","SAT2","GCN","GB","GUE","NRS","ROOT","XSI","GIVE","NYC","PXC","ANAL","SBC","HAL","NKA","MRY","MNC","EXE","POP","KGC","RPC","ICN","DIEM","CAT","XGR","QCN","NMB","ZED","SHLD","SHA","FFC","GLYPH","MLS","FRAC","CDN","BET","OCTO","ALN","CRACK","AU","VGC","SHADE","KDC","STV","CAGE","AXR","BEAR","STK","ORO","SPT","XBOT","MCN","MRS","RIPO","HRL","YUM","SOLE","ZS","LTB","ULTC","CATC","BNCR","CHASH","XAU","CNL","GUN","LIMX","QB","GSX","BTCRY","PHO","NRB","PLC2","GAP","BEL","NTC","NEC","BOB","CGA","BEN","CND","VPN","APC","FIBRE","CACH","MZC","FLO","IOC","XAI","BLITZ","XST","JBS","HBN","OPAL","MOON","RBY","BOST","SMLY","UTC","HYP","FRC","HTML5","USDE","BITS","EAC","XWC","TEK","BLU","DEBUNE","FLAP","UNC","MARYJ","AM","MYR","C2","NOBL","LTBC","XMG","UNB","ABY","CCN","8BIT","CAP","RIC","TIPS","CASH","NEOS","TRC","CRYPT","EFL","BYC","SPR","TAG","DIME","NOXT","GEO","SUPER","AMBER","EMC2","PTC","OMC","MMC","CESC","ELT","EKN","VTA","FST","J","SLG","ARI","FLDC","SRC","DOPE","GRS","QBK","CSC","BITB","XQN","PHS","LTCD","CYP","COL","ORB","NYAN","XCPSCO","CAM","UNAT","TCO"]</pre></div>
+
+<h2>
+<a id="map" class="anchor" href="#map" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Map</h2>
+
+<pre><code>http://www.coincap.io/map
+</code></pre>
+
+<h3>
+<a id="response-1" class="anchor" href="#response-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>response</h3>
+
+<div class="highlight highlight-source-json"><pre>[{<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Counterparty<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>symbol<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>XCP<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>aliases<span class="pl-pds">"</span></span>:[<span class="pl-s"><span class="pl-pds">"</span>unknown<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>setme<span class="pl-pds">"</span></span>]},<span class="pl-ii">...</span>,<span class="pl-ii">...</span>,<span class="pl-ii">...</span>]</pre></div>
+
+<h2>
+<a id="front" class="anchor" href="#front" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Front</h2>
+
+<pre><code>http://www.coincap.io/front
+</code></pre>
+
+<h3>
+<a id="response-2" class="anchor" href="#response-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>response</h3>
+
+<div class="highlight highlight-source-json"><pre>[{<span class="pl-s"><span class="pl-pds">"</span>position24<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>position<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>short<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>BTC<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>long<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Bitcoin<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>:<span class="pl-c1">1434562273127</span>,<span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>251.42000000<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>perc<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>5.98<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>volume<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>48384700<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>usdVolume<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>48384700<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>cap24hrChange<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>5.98<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>mktcap<span class="pl-pds">"</span></span>:<span class="pl-c1">3590824438.5</span>,<span class="pl-s"><span class="pl-pds">"</span>supply<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>14282175<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>published<span class="pl-pds">"</span></span>:<span class="pl-c1">false</span>},<span class="pl-ii">...</span>,<span class="pl-ii">...</span>,]</pre></div>
+
+<h2>
+<a id="globals" class="anchor" href="#globals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Globals</h2>
+
+<pre><code>http://www.coincap.io/global
+</code></pre>
+
+<h3>
+<a id="response-3" class="anchor" href="#response-3" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>response</h3>
+
+<div class="highlight highlight-source-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>btcPrice<span class="pl-pds">"</span></span>:<span class="pl-c1">250.12</span>,<span class="pl-s"><span class="pl-pds">"</span>btcCap<span class="pl-pds">"</span></span>:<span class="pl-c1">3572257611</span>,<span class="pl-s"><span class="pl-pds">"</span>altCap<span class="pl-pds">"</span></span>:<span class="pl-c1">630448767</span>,<span class="pl-s"><span class="pl-pds">"</span>dom<span class="pl-pds">"</span></span>:<span class="pl-c1">18</span>}</pre></div>
+
+<h2>
+<a id="page-call" class="anchor" href="#page-call" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Page call</h2>
+
+<pre><code>http://www.coincap.io/page/:coin
+Coin must be the coin symbole. ie Bitcoin is BTC
+to view a list of correct symbols/names view the map call 
+</code></pre>
+
+<h3>
+<a id="response-4" class="anchor" href="#response-4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>response</h3>
+
+<div class="highlight highlight-source-json"><pre>{<span class="pl-s"><span class="pl-pds">"</span>btcPrice<span class="pl-pds">"</span></span>:<span class="pl-c1">250.21</span>,<span class="pl-s"><span class="pl-pds">"</span>btcCap<span class="pl-pds">"</span></span>:<span class="pl-c1">3573543006.75</span>,<span class="pl-s"><span class="pl-pds">"</span>altCap<span class="pl-pds">"</span></span>:<span class="pl-c1">628974097</span>,<span class="pl-s"><span class="pl-pds">"</span>dom<span class="pl-pds">"</span></span>:<span class="pl-c1">18</span>,<span class="pl-s"><span class="pl-pds">"</span>short<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>BTC<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>long<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>Bitcoin<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>homeURL<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>https://www.reddit.com/r/Bitcoin<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>explorerURL<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>twitter<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>discissionURL<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>mineable<span class="pl-pds">"</span></span>:<span class="pl-c1">true</span>,<span class="pl-s"><span class="pl-pds">"</span>premined<span class="pl-pds">"</span></span>:<span class="pl-c1">false</span>,<span class="pl-s"><span class="pl-pds">"</span>preminedSig<span class="pl-pds">"</span></span>:<span class="pl-c1">false</span>,<span class="pl-s"><span class="pl-pds">"</span>position24<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>position<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>1<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>time<span class="pl-pds">"</span></span>:<span class="pl-c1">1434562499433</span>,<span class="pl-s"><span class="pl-pds">"</span>price<span class="pl-pds">"</span></span>:[<span class="pl-ii">...*Array</span> <span class="pl-ii">of</span> <span class="pl-ii">Arrays</span> <span class="pl-ii">(chart</span> <span class="pl-ii">data)*</span>],<span class="pl-s"><span class="pl-pds">"</span>perc<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>5.98<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>volume<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>48384700<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>usdVolume<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>48384700<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>cap24hrChange<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>5.98<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>mktcap<span class="pl-pds">"</span></span>:<span class="pl-c1">3573543006.75</span>,<span class="pl-s"><span class="pl-pds">"</span>supply<span class="pl-pds">"</span></span>:<span class="pl-s"><span class="pl-pds">"</span>14282175<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>published<span class="pl-pds">"</span></span>:<span class="pl-c1">false</span>,<span class="pl-s"><span class="pl-pds">"</span>usdPrice<span class="pl-pds">"</span></span>:<span class="pl-c1">250.21</span>,<span class="pl-s"><span class="pl-pds">"</span>market_cap<span class="pl-pds">"</span></span>:[<span class="pl-ii">...*Array</span> <span class="pl-ii">of</span> <span class="pl-ii">Arrays</span> <span class="pl-ii">(chart</span> <span class="pl-ii">data)*</span>]}</pre></div>
+
+<h2>
+<a id="history" class="anchor" href="#history" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>History</h2>
+
+<pre><code>http://www.coincap.io/history/*Timeframe*/BTC
+
+Timeframes supported
+
+* /history/1day/ 
+* /history/7day/ 
+* /history/30day/ 
+* /history/90day/
+* /history/180day/ 
+* /history/365day/
+
+Timeframe is optional
+/history/:coin will return all data
+</code></pre>
+
+<h3>
+<a id="response-5" class="anchor" href="#response-5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>response</h3>
+
+<pre><code>JSON Object
+</code></pre>
+
+<pre><code>{"market_cap":[*Array of Arrays (chart data)*],"price":[*Array of Arrays (chart data)*]}
+</code></pre>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/grazies/CoinCap.io">Coincap.io</a> is maintained by <a href="https://github.com/grazies">grazies</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
